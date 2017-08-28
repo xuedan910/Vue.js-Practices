@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width:500px;
+            padding:40px;
+            background-color: #61a1bc;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        ul{ list-style: none;padding: 0 }
+        li{
+            padding:15px;
+            background-color: #e35885;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        span{
+            font-size: 30px;
+            color:white;
+        }
+        .business{ float: left; }
+        .price{ float: right; }
+        .total{ padding:0 10px }
+        .total span{
+            display: inline-block;
+            width: 50%;
+        }
+        .total span:nth-child(1){ text-align: left }
+        .total span:nth-child(2){ text-align: right }
+        .isActive{ background-color: #8ec16d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul>
+            <li v-for="item in items" @click="toggleActive(item)" :class="{ isActive:item.active }">
+                <div><span class="business">{{ item.business }}</span><span class="price">${{ item.price }}</span></div>
+                <div style="clear: both"></div>
+            </li>
+        </ul>
+        <hr>
+        <div class="total"><span>Total:</span><span>${{ sum }}</span></div>
+    </div>
+</body>
+<script src="https://unpkg.com/vue@2.4.2"></script>
+<script>
+    new Vue({
+        el:'.container',
+        data:{
+            items:[
+                {business:'Web Development',price:300,active:false},
+                {business:'Design',price:400.00,active:false},
+                {business:'Integration',price:250.00,active:false},
+                {business:'Training',price:220.00,active:false},
+            ],
+            sum:0,
+        },
+        methods:{
+            toggleActive:function(obj){
+                var tmp = 0;
+                obj.active = !obj.active;
+                this.items.forEach(function(item){
+                    if(item.active){
+                        tmp += item.price;
+                    }
+                });
+                this.sum = tmp;
+            }
+        }
+    });
+</script>
+</html>
