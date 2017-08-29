@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Instant Search</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .container{
+            width:400px;
+            margin:0 auto;
+        }
+        .search{ padding:15px;background-color: #5a99b5;border-radius: 5px; }
+        .search input{
+            width:100%;
+            padding:10px 0;
+            color: #7f7f7f;
+            font-size: 15px;text-indent: 20px;
+            border:none;
+            border-radius: 5px;
+        }
+        ul{
+            list-style: none;
+            padding: 10px;
+        }
+        ul li{
+            overflow: hidden;
+            padding: 15px;
+            border-bottom: 1px solid lightgrey;
+        }
+        img{
+            width:60px;
+            height:60px;
+            border-radius: 60px;
+            float: left;
+            margin-right: 10px;
+        }
+        p{
+            margin:0;
+            padding-top: 15px;
+            color: #6e7a7f;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search">
+            <input type="text" placeholder="Enter your search terms" v-model="val" @keyup="search()">
+        </div>
+        <div class="show">
+            <ul>
+                <li v-for="item in items" v-if="item.show">
+                    <img :src="item.route">
+                    <p>{{item.txt}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el:'.container',
+            data:{
+                val:'',
+                items:[
+                    {
+                        route:'https://tutorialzine.com/media/2016/03/css-variables.jpg',
+                        txt:'What You Need To Know About CSS Variables',
+                        show:true
+                    },
+                    {
+                        route:'https://tutorialzine.com/media/2016/02/great-looking-pricing-tables.jpg',
+                        txt:'Freebie: 4 Great Looking Pricing Tables',
+                        show:true
+                    },
+                    {
+                        route:'https://tutorialzine.com/media/2016/02/interesting-resources-february.jpg',
+                        txt:'20 Interesting JavaScript and CSS Libraries for February 2016',
+                        show:true
+                    },
+                    {
+                        route:'https://tutorialzine.com/media/2016/02/quick-tip-responsive-headers.png',
+                        txt:'Quick Tip: The Easiest Way To Make Responsive Headers',
+                        show:true
+                    },
+                    {
+                        route:'https://tutorialzine.com/media/2016/01/learn-sql-20-minutes.png',
+                        txt:'Learn SQL In 20 Minutes',
+                        show:true
+                    },
+                    {
+                        route:'https://tutorialzine.com/media/2015/12/creating-your-first-desktop-app-with-electron.png',
+                        txt:'Creating Your First Desktop App With HTML, JS and Electron',
+                        show:true
+                    },
+                ],
+            },
+            methods:{
+                search:function () {
+                    this.items.forEach(item => {
+                        if(item.txt.toUpperCase().indexOf(this.val.toUpperCase()) < 0){
+                            item.show = false;
+                        }else{
+                            item.show = true;
+                        }
+                    });
+                }
+            },
+        });
+    </script>
+</body>
+</html>
