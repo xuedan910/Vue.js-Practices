@@ -4,3 +4,6 @@
 
 ## Instant Search:
 ![](./ScreenShots/Instant-Search.png?raw=true "Optional Title")
+
+## Switchable Grid:
+![](./ScreenShots/Switchable-Grid.png?raw=true "Optional Title")

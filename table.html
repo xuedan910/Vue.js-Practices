@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Instant Search</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .container{
+            width:600px;
+            margin:0 auto;
+        }
+        .navbar{
+            background-color: #5a99b5;
+            padding:10px;
+            text-align: right;
+        }
+        .navbar div{
+            display: inline-block;
+            height:30px;
+            line-height: 30px;
+            color: white;
+            padding:0 10px;
+            font-size:18px;
+            cursor: pointer;
+        }
+        .list{
+            padding:10px 15px;
+        }
+        .list ul{
+            list-style: none;
+            padding:0;
+        }
+        .list img{
+            width: 120px;
+            height: 120px;
+            float: left;
+        }
+        .list li{
+            overflow: hidden;
+            padding:15px;
+            border-bottom: 1px solid lightgray;
+        }
+        .list p{
+            margin: 0;
+            margin-left:130px;
+            color: #6e7a7f;
+            font-weight: bold;
+        }
+        .grid ul{ list-style: none; }
+        .grid img{
+            width:260px;
+            height:260px;
+            object-fit: cover;
+        }
+        .grid li{ float: left;margin-right: 5px; }
+        .active{ background-color: #c14694; }
+        .inactive{ background-color: #4987a1; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <div :class="{ active:list,inactive:grid }" @click="changeStyle('list')">List</div>
+        <div :class="{ active:grid,inactive:list }" @click="changeStyle('grid')">Grid</div>
+    </div>
+
+    <div class="list" v-if="list" name="list" tag="ul">
+        <ul>
+            <li v-for="(item,index) in items" :key="index">
+                <img :src="item.image">
+                <p>{{ item.txt }}</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="grid" v-if="grid">
+        <ul>
+            <li v-for="(item,index) in items" :key="index">
+                <img :src="item.image">
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el:'.container',
+        data:{
+            list:true,
+            grid:false,
+            items:[
+                {
+                    image:'https://tutorialzine.com/media/2016/03/css-variables.jpg',
+                    txt:'What You Need To Know About CSS Variables'
+                },
+                {
+                    image:'https://tutorialzine.com/media/2016/02/great-looking-pricing-tables.jpg',
+                    txt:'Freebie: 4 Great Looking Pricing Tables'
+                },
+                {
+                    image:'https://tutorialzine.com/media/2016/02/interesting-resources-february.jpg',
+                    txt:'20 Interesting JavaScript and CSS Libraries for February 2016'
+                },
+                {
+                    image:'https://tutorialzine.com/media/2016/02/quick-tip-responsive-headers.png',
+                    txt:'Quick Tip: The Easiest Way To Make Responsive Headers'
+                },
+                {
+                    image:'https://tutorialzine.com/media/2016/01/learn-sql-20-minutes.png',
+                    txt:'Learn SQL In 20 Minutes'
+                },
+                {
+                    image:'https://tutorialzine.com/media/2015/12/creating-your-first-desktop-app-with-electron.png',
+                    txt:'Creating Your First Desktop App With HTML, JS and Electron'
+                },
+            ],
+        },
+        methods:{
+            changeStyle:function (val) {
+                if(val=='list'){
+                    this.list=true;this.grid=false;
+                }
+                if(val=='grid'){
+                    this.list=false;this.grid=true;
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
