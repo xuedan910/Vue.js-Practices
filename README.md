@@ -1,6 +1,6 @@
 # Vue.js-Practices
-Order Form:<br>
+## Order Form:
 ![](./ScreenShots/Order-Form.png?raw=true "Optional Title")
 
-Instant Search:<br>
+## Instant Search:
 ![](./ScreenShots/Instant-Search.png?raw=true "Optional Title")
