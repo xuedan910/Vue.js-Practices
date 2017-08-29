@@ -7,3 +7,6 @@
 
 ## Switchable Grid:
 ![](./ScreenShots/Switchable-Grid.png?raw=true "Optional Title")
+
+## Timer:
+![](./ScreenShots/Timer.png?raw=true "Optional Title")

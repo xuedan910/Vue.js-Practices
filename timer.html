@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+
+    <style>
+        .container{
+            width:300px;
+            margin:0 auto;
+            border:2px solid indianred;
+            padding:30px 40px;
+            text-align: center;
+            background-color: #ECE58A;
+        }
+        .container p{
+            font-size: 20px;
+            color: indianred;
+        }
+        .time-setter{
+            background-color: #84D270;
+            width: 150px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .time-setter span{
+            color: #ffffff;
+            font-size: 18px;
+            display: inline-block;
+            float: left;
+            width:33.33%;
+            padding:10px 0;
+        }
+        .minus,.add{
+            cursor: pointer;
+        }
+        .minus:hover,.add:hover{
+            background-color: #2ca02c;
+        }
+        .time{
+            width: 160px;
+            height: 160px;
+            border-radius: 160px;
+            border:1px solid rgb(226, 72, 72);
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        .time p{
+            color: white;
+            line-height: 120px;
+        }
+        .go{
+            width: 150px;
+            margin: 0 auto;
+            color: #ffffff;
+            font-size: 20px;
+            background-color: #84D270;
+            padding: 10px 0;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .go:hover{ background-color: #2ca02c; }
+        .reset{
+            width: 80px;
+            background-color: indianred;
+            margin: 0 auto;
+            color: #ffffff;
+            margin-top: 20px;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        .inActive{ background-color: rgb(226, 72, 72) }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Pomodoro</p>
+        <div class="time-setter">
+            <span class="minus" @click="minus()"> - </span>
+            <span>{{ timeSetter }}</span>
+            <span class="add" @click="add()"> + </span>
+        </div>
+        <div :class="{ inActive:inActive,time }">
+            <p>{{ time }}</p>
+        </div>
+        <div class="go" @click="go()">{{ inActive ? 'Go!' : 'Pause' }}</div>
+        <div class="reset" @click="reset()">Reset</div>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el:'.container',
+        data:{
+            timeSetter:25,
+            tmp:25,
+            inActive:true,
+            inter:null,
+            isReset:false,
+        },
+        computed:{
+            time: {
+                get:function(){
+                    return this.tmp.toFixed(2)
+                },
+                set:function (newValue) {
+                    if(!vm.isReset){
+                        this.tmp -= newValue;
+                    }else{
+                        this.tmp = newValue;
+                        vm.isReset = false;
+                    }
+                }
+            }
+        },
+        methods:{
+            minus:function () {
+                if(this.inActive){
+                    if(this.timeSetter>1){
+                        this.timeSetter--;
+                        this.tmp--;
+                    }
+                }
+            },
+            add:function () {
+                if(this.inActive){
+                    if(this.timeSetter<98){
+                        this.timeSetter++;
+                        this.tmp++;
+                    }
+                }
+            },
+            go:function () {
+                this.inActive = !this.inActive;
+                if(!this.inActive){
+                    vm.inter = setInterval(() => {this.time = 0.01;},1000);
+                }else{
+                    clearInterval(vm.inter);
+                }
+            },
+            reset:function () {
+                this.isReset = true;
+                this.inActive = true;
+                clearInterval(vm.inter);
+                vm.time = vm.timeSetter;
+            },
+        }
+    });
+</script>
+</html>
