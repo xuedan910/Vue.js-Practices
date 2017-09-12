@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.process{
+    float: left;
+    width: 25%;
+    padding: 30px 0px;
+    font-size: 20px;
+    color: grey;
+    text-align: center;
+    border-bottom: 2px solid grey;
+}
+.process:nth-child(1){
+    color: orange;
+    border-bottom: 2px solid orange;
+}
+.address_box{ position: relative;margin-bottom: 50px; }
+.address_title{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.address_title:before{
+    content: '';
+    position: absolute;
+    width: 42%;
+    height: 1px;
+    background-color: darkgrey;
+    left: 0;
+    top: 10px;
+}
+.address_title:after{
+    content: '';
+    position: absolute;
+    width: 42%;
+    height: 1px;
+    background-color: darkgrey;
+    right: 0;
+    top: 10px;
+}
+.addresses{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.address_single{
+    border: 2px solid lightgrey;
+    margin:10px;
+    padding: 20px;
+    width: 300px;
+    height: 90px;
+    cursor: pointer;
+}
+.address_single > div{
+    height: 50%;
+}
+.address_single:hover,.deliver_ways div:hover{
+    border: 2px solid orange;
+}
+.address_single:last-child div{
+    background-color: darkgrey;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.address_single:last-child:hover div{
+    background-color: orange
+}
+.deliver_ways{
+    display: flex;
+    justify-content: center;
+}
+.deliver_ways div{
+    text-align: center;
+    margin: 10px;
+    border:2px solid darkgrey;
+    padding: 10px 50px;
+    cursor: pointer;
+}
+.more{ text-align: center;color: orange;cursor: pointer; }
+.select_item{ border: 2px solid orange !important; }

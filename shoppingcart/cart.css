@@ -1,0 +1,58 @@
+.title{
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 80px;
+}
+.title p:before{
+    content:'';
+    position: absolute;
+    background: #494949;
+    width: 200px;
+    height: 2px;
+    left: 400px;
+    top:10px;
+}
+.title p:after{
+    content:'';
+    position: absolute;
+    background: #494949;
+    width: 200px;
+    height: 2px;
+    right: 400px;
+    top:10px;
+}
+.table th{ text-align: center; }
+.table>tbody>tr>td{ 
+    text-align: center;
+    vertical-align: middle; 
+    width: 200px;
+}
+table tr td:nth-child(1){
+    width: 400px;
+    text-align: left;
+}
+table tr td img{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 220px;
+    height: 165px;
+}
+.mount input{
+    width: 50px;
+}
+.mount span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid lightgrey;
+}
+.form-control{ display: inline; }
+.total span{
+    color: red;
+}
+.select button{
+    margin: 0 10px;
+}

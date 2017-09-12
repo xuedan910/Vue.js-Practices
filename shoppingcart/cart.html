@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <div id="app">
+        <div class="title">
+            <p>Shopping Cart</p>
+        </div>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Product Details</th>
+                <th>Price</th>
+                <th>Mount</th>
+                <th>Total</th>
+                <th>Edit</th>
+            </tr>
+            <tr v-for="(product,index) in products">
+                <td>
+                    <input type="checkbox" :value="index" v-model="selectArr">
+                    <img :src="product['productImage']">
+                    <span v-text="product['productName']"></span>
+                </td>
+                <td>
+                    <span v-text="product['productPrice']"></span>
+                </td>
+                <td class="mount">
+                    <button class="btn btn-primary" @click="minus(product)" :disabled="product['disable']">-</button>
+                    <input class="form-control" type="text" disabled="disabled" v-model="product['productQuentity']">
+                    <button class="btn btn-primary" @click="add(product)">+</button>
+                </td>
+                <td class="total">
+                    <span v-text="product['productQuentity'] * product['productPrice']"></span>
+                </td>
+                <td>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="select">
+                    <button class="btn btn-primary" @click="selectAll()">All</button>
+                    <button class="btn btn-primary" @click="cancelAll()">Cancel</button>
+                </td>
+                <td colspan="4" style="text-align: right;">
+                    <span>Item total:</span><span v-text="total"></span>
+                    <button class="btn btn-success">Checkout</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
